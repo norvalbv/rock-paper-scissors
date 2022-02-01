@@ -1,0 +1,37 @@
+@import "../../index.scss";
+
+.scoreboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 5px;
+  border: 3px solid $n-header-outline;
+  padding: 1rem;
+  text-transform: uppercase;
+
+
+  .game-logo {
+      font-weight: 700;
+      line-height: 0.75;
+  }
+
+  .score-container {
+    color: $n-dark-text;
+    background: #fff;
+    border-radius: 5px;
+    text-align: center;
+    padding: 1rem 2.5rem;
+    line-height: 1;
+
+    .score {
+        font-size: 2.5rem;
+        font-weight: 700;
+    }
+
+    .score-title {
+        font-size: 1rem;
+    }
+  }
+}
