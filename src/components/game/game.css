@@ -117,14 +117,44 @@ body, html {
   margin-top: 6rem;
 }
 
-.computer-choice {
+.result-section .your-choice {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.result-section .computer-choice {
   -webkit-animation-delay: 7s;
           animation-delay: 7s;
   -webkit-animation: computer 2s ease;
           animation: computer 2s ease;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .result {
@@ -134,6 +164,19 @@ body, html {
           animation: show 2s ease;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 @-webkit-keyframes computer {

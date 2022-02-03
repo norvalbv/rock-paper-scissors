@@ -1,10 +1,10 @@
 import { useState } from "react/cjs/react.development";
 import "./modal.scss";
-import modalSrc from "../../images/image-rules.svg";
+import easyMode from "../../images/image-rules.svg";
+import hardMode from "../../images/image-rules-bonus.svg";
 import close from "../../images/icon-close.svg";
-export const Modal = () => {
+export const Modal = ({ gamemode }) => {
   const [openModal, setOpenModal] = useState(false);
-
 
   // Put this modal as a PORTAL to another node.
   return (
@@ -21,7 +21,11 @@ export const Modal = () => {
             id="close"
             onClick={() => setOpenModal(!openModal)}
           />
-          <img src={modalSrc} alt="Rules" />
+          {gamemode === "easy" ? (
+            <img src={easyMode} alt="Rules for easy mode" />
+          ) : (
+            <img src={hardMode} alt="Rules for hard mode" />
+          )}
         </div>
       ) : null}
     </>

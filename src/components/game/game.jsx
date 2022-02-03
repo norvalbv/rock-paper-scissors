@@ -4,9 +4,8 @@ import paper from "../../images/icon-paper.svg";
 import scissors from "../../images/icon-scissors.svg";
 import React, { useState, useReducer, useRef } from "react";
 import mainBackground from "../../images/bg-triangle.svg";
-import { useEffect } from "react/cjs/react.development";
 
-export const Game = ({ handleWin, handleLose }) => {
+export const Game = ({ handleWin, handleLose, gamemode }) => {
   // const reducer = (state, action) => {
   //   switch (action) {
   //     case "Rock":
@@ -82,7 +81,7 @@ export const Game = ({ handleWin, handleLose }) => {
     <div className="game">
       {result ? (
         <div className="result-section">
-          <div>
+          <div className="your-choice">
             <p>Your Choice</p>
             <div
               className={[
@@ -90,7 +89,9 @@ export const Game = ({ handleWin, handleLose }) => {
                 "grad-wrap",
               ].join(" ")}
             >
-              <button className={result === "Win" ? "game-button win" : "game-button"}>
+              <button
+                className={result === "Win" ? "game-button win" : "game-button"}
+              >
                 <img src={source.user} alt="Paper Icon" />
               </button>
             </div>
@@ -102,6 +103,7 @@ export const Game = ({ handleWin, handleLose }) => {
                 setResult("");
               }}
               id="play-again"
+              style={result === "Lose" ? { color: "red" } : { color: "green" }}
             >
               Play again
             </button>
@@ -114,7 +116,11 @@ export const Game = ({ handleWin, handleLose }) => {
                 "grad-wrap",
               ].join(" ")}
             >
-              <button className={result === "Lose" ? "game-button win" : "game-button"}>
+              <button
+                className={
+                  result === "Lose" ? "game-button win" : "game-button"
+                }
+              >
                 <img src={source.computer} alt={""} />
               </button>
             </div>
@@ -151,6 +157,29 @@ export const Game = ({ handleWin, handleLose }) => {
               >
                 <img src={scissors} alt="Scissors Icon" />
               </button>
+
+              {gamemode === "hard" && (
+                <div className="grad-wrap scissors-wrap">
+                  <button
+                    onClick={() => handleClick("Scissors")}
+                    id="scissors"
+                    className="game-button"
+                  >
+                    <img src={scissors} alt="Scissors Icon" />
+                  </button>
+                </div>
+              )}
+              {gamemode === "hard" && (
+                <div className="grad-wrap scissors-wrap">
+                  <button
+                    onClick={() => handleClick("Scissors")}
+                    id="scissors"
+                    className="game-button"
+                  >
+                    <img src={scissors} alt="Scissors Icon" />
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </>

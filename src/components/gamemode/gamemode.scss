@@ -1,0 +1,52 @@
+@import "../../index.scss";
+
+#gamemode {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    text-transform: uppercase;
+    background: none;
+    color: #fff;
+    border: 3px solid $n-header-outline;
+    border-radius: 5px;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+}
+
+#gamemode-title {
+    color: $n-dark-text;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+#close {
+    position: absolute;
+    right: 2rem;
+    top: 2.75rem;
+    cursor: pointer;
+}
+
+#modal {
+    position: fixed;
+    min-width: 265px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    background-color: #fff;
+    z-index: 50;
+    animation: fade 0.5s;
+    animation-fill-mode: forwards;
+    padding: 2rem 1rem;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
