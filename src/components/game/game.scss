@@ -1,20 +1,127 @@
 @import "../../index.scss";
 
-button {
+.game {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0.75rem 0;
+  height: 75%;
+}
+
+.game-button {
   width: 125px;
   height: 125px;
   border-radius: 50%;
   cursor: pointer;
+  transition: 0.5s ease;
+  box-shadow: inset 1px 4px 7.5px #555;
+  border: none;
+
+  &:hover {
+    box-shadow: inset 0px 0px 7.5px #555;
+  }
 }
 
-.game {
+.grad-wrap {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  transition: 0.5s ease;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
+  &:hover {
+    transform: scale(1.1, 1.1);
+  }
 }
 
-.bottom {
-  display: flex;
-  gap: 5.25rem;
+#rock-placement {
+  position: absolute;
+  bottom: 0;
+}
+
+.rock-wrap {
+  background: $p-rock-grad;
+}
+
+.paper-wrap {
+  background: $p-paper-grad;
+}
+
+.scissors-wrap {
+  background: $p-scissors-grad;
+}
+
+.background {
+  position: absolute;
+  margin: 3.5rem auto;
+}
+
+.icons {
+  position: relative;
   justify-content: center;
+  gap: 8rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  #rock-container {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.result-section {
+  display: flex;
+  gap: 10rem;
+}
+
+.result {
+  // display: none;
+  animation: show 2s ease;
+  transition: 1s;
+}
+
+@keyframes show {
+  0% {
+    display: none;
+  }
+
+  100% {
+    display: inline-block;
+  }
+}
+
+#result-title {
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+
+#play-again {
+  text-transform: uppercase;
+  padding: 1rem 4rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+$box-shadow-width: 40px;
+
+.win {
+  animation: buttonWin 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes buttonWin {
+  33% {
+    box-shadow: 0 0 0 $box-shadow-width rgba(255, 255, 255, 0.025);
+  }
+  66% {
+    box-shadow: 0 0 0 $box-shadow-width rgba(255, 255, 255, 0.025),
+      0 0 0 calc($box-shadow-width * 2 + 5px) rgba(255, 255, 255, 0.025);
+  }
+  100% {
+    box-shadow: 0 0 0 $box-shadow-width rgba(255, 255, 255, 0.025),
+      0 0 0 calc($box-shadow-width * 2 + 5px) rgba(255, 255, 255, 0.025),
+      0 0 0 calc($box-shadow-width * 3 + 25px) rgba(255, 255, 255, 0.025);
+  }
 }

@@ -2,37 +2,56 @@ import "./game.scss";
 import rock from "../../images/icon-rock.svg";
 import paper from "../../images/icon-paper.svg";
 import scissors from "../../images/icon-scissors.svg";
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
+import mainBackground from "../../images/bg-triangle.svg";
 
 export const Game = ({ handleWin, handleLose }) => {
-  // inputs
+  // const reducer = (state, action) => {
+  //   switch (action) {
+  //     case "Rock":
+  //       return { ...state, user: "Rock"};
+  //     case "Paper":
+  //       return;
+  //     case "Scissors":
+  //       return;
+  //     default:
+  //       return state;
+  //   }
+  // };
+
+  // const test = () => {
+  //   const [choice, dispatch] = useReducer(reducer, null);
+  // }
+
   const [choice, setChoice] = useState({ user: "", computer: "" });
-
-  // results
-  const [result, setResult] = useState("");
-
-  // sources for images
-  let [source, setSource] = useState({ user: null, computer: null });
+  const [result, setResult] = useState(true);
+  const [source, setSource] = useState({ user: null, computer: null });
 
   const handleClick = (userInput) => {
-
-    console.log(choice);
-
-    // arrays
     let choiceArr = ["Rock", "Paper", "Scissors"];
     const arr = [rock, paper, scissors];
 
-    // set computer
     let computer = Math.floor(Math.random() * 3);
-    setSource({ ...source,  computer: arr[computer] });
-    setChoice({ ...choice, computer: choiceArr[computer] });
 
-    // set user
-    setSource({ ...source, user: arr[choiceArr.indexOf(userInput)] });
-    setChoice({ ...choice, user: userInput });
+    setSource((prev) => {
+      return {
+        ...prev,
+        user: arr[choiceArr.indexOf(userInput)],
+        computer: arr[computer],
+      };
+    });
+
+    setChoice((prev) => {
+      return {
+        ...prev,
+        user: userInput,
+        computer: choiceArr[computer],
+      };
+    });
+
+    console.log(choice, source);
 
     if (choice.user === choice.computer) {
-      console.log(choice.user, choice.computer);
       console.log("DRAW");
       setResult("Draw");
     } else if (
@@ -40,21 +59,17 @@ export const Game = ({ handleWin, handleLose }) => {
       (choice.user === "Paper" && choice.computer === "Rock") ||
       (choice.user === "Scissors" && choice.computer === "Paper")
     ) {
-      console.log(choice.user, choice.computer);
-
       console.log("win");
       handleWin();
-      setResult("User");
+      setResult("Win");
     } else if (
       (choice.user === "Rock" && choice.computer === "Paper") ||
       (choice.user === "Scissors" && choice.computer === "Rock") ||
       (choice.user === "Paper" && choice.computer === "Scissors")
     ) {
-      console.log(choice.user, choice.computer);
-
       console.log("lose");
       handleLose();
-      setResult("Computer");
+      setResult("Lose");
     } else {
       console.error(
         "An error occured, please re-try or type in a different input."
@@ -62,49 +77,78 @@ export const Game = ({ handleWin, handleLose }) => {
     }
   };
 
+  console.log(
+    `${choice.user}-wrap`.toLowerCase(), "grad-wrap"
+  )
+
   return (
     <div className="game">
       {result ? (
-        <>
-          <div className="userResult">
+        <div className="result-section">
+          <div>
             <p>Your Choice</p>
-            <button className="paper">
-              <img src={source.user} alt="Paper Icon" />
+            <div
+              className={[`${choice.user}-wrap`.toLowerCase(), "grad-wrap"].join(" ")}
+              >
+              <button className="game-button win">
+                <img src={source.user} alt="Paper Icon" />
+              </button>
+            </div>
+          </div>
+          <div className="result">
+            <h3 id="result-title">You {result}</h3>
+            <button onClick={() => setResult("")} id="play-again">
+              Play again
             </button>
           </div>
-          <div className="results">
-            <h3>You {result}</h3>
-            <button onClick={() => setResult("")}>Play again</button>
-          </div>
-          <div className="computerResult">
+          <div>
             <p>Computer Choice</p>
-            <button className="paper">
-              <img src={source.computer} alt={""} />
-            </button>
+            <div
+              className={[`${choice.computer}-wrap`.toLowerCase(), "grad-wrap"].join(" ")}
+              >
+              <button className="game-button">
+                <img src={source.computer} alt={""} />
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <>
+          <img src={mainBackground} alt="" className="background" />
+
+          <div className="icons">
+            <div className="grad-wrap paper-wrap">
+              <button
+                onClick={() => handleClick("Paper")}
+                id="paper"
+                className="game-button"
+              >
+                <img src={paper} alt="Paper Icon" />
+              </button>
+              {/* <p>Paper</p> */}
+            </div>
+            <div className="grad-wrap rock-wrap" id="rock-placement">
+              <button
+                onClick={() => handleClick("Rock")}
+                id="rock"
+                className="game-button"
+              >
+                <img src={rock} alt="Rock Icon" />
+              </button>
+              {/* <p>Rock</p> */}
+            </div>
+            <div className="grad-wrap scissors-wrap">
+              <button
+                onClick={() => handleClick("Scissors")}
+                id="scissors"
+                className="game-button"
+              >
+                <img src={scissors} alt="Scissors Icon" />
+              </button>
+              {/* <p>Scissors</p> */}
+            </div>
           </div>
         </>
-      ) : (
-        <span>
-          <div className="top">
-            <button className="paper" onClick={() => handleClick("Paper")}>
-              <img src={paper} alt="Paper Icon" />
-            </button>
-            <button className="rock" onClick={() => handleClick("Rock")}>
-              <img src={rock} alt="Rock Icon" />
-            </button>
-            <button
-              className="scissors"
-              onClick={() => handleClick("Scissors")}
-            >
-              <img src={scissors} alt="Scissors Icon" />
-            </button>
-          </div>
-          <div className="bottom">
-            <p>Paper</p>
-            <p>Rock</p>
-            <p>Scissors</p>
-          </div>
-        </span>
       )}
     </div>
   );

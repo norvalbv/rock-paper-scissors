@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./app.scss";
 import { Game } from "./components/game/game";
+import { Modal } from "./components/modal/modal";
 import { ScoreBoard } from "./components/scoreboard/scoreboard";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     <div className="app">
       <ScoreBoard score={score} />
       <Game handleWin={handleWin} handleLose={handleLose} />
+      <Modal />
     </div>
   );
 }
