@@ -73,21 +73,60 @@
 .result-section {
   display: flex;
   gap: 10rem;
+  margin-top: 6rem;
+}
+
+.computer-choice {
+  animation-delay: 7s;
+  animation: computer 2s ease;
+  animation-fill-mode: forwards;
+  margin: 0;
 }
 
 .result {
-  // display: none;
+  animation-delay: 8s;
   animation: show 2s ease;
-  transition: 1s;
+  animation-fill-mode: forwards;
+}
+
+  // Although screenreaders can see these elements when height and width
+  // are displayed to 0, it's still fine to do as they're simply pop-in 
+  // animations after a given time
+
+@keyframes computer {
+  0% {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+  }
+  100% {
+    height: auto;
+    width: auto;
+    overflow: visible;
+  }
+
 }
 
 @keyframes show {
   0% {
-    display: none;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+  }
+
+  50% {
+    transform: scale(0.25, 0.25);
+  }
+
+  99% {
+    transform: scale(1.1, 1.1);
   }
 
   100% {
-    display: inline-block;
+    height: auto;
+    width: auto;
+    transform: scale(1, 1);
+    overflow: visible;
   }
 }
 
@@ -107,18 +146,25 @@
 $box-shadow-width: 40px;
 
 .win {
-  animation: buttonWin 0.5s;
+  animation: buttonWin 3s;
+  animation-delay: 0.25s;
   animation-fill-mode: forwards;
 }
 
 @keyframes buttonWin {
-  33% {
-    box-shadow: 0 0 0 $box-shadow-width rgba(255, 255, 255, 0.025);
+  25% {
+    box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025);
   }
-  66% {
-    box-shadow: 0 0 0 $box-shadow-width rgba(255, 255, 255, 0.025),
-      0 0 0 calc($box-shadow-width * 2 + 5px) rgba(255, 255, 255, 0.025);
+  50% {
+    box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025),
+      0 0 0 calc($box-shadow-width * 3 + 25px) rgba(255, 255, 255, 0.025);
   }
+  75% {
+    box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025),
+      0 0 0 calc($box-shadow-width * 3 + 25px) rgba(255, 255, 255, 0.025),
+      0 0 0 calc($box-shadow-width * 4 + 50px) rgba(255, 255, 255, 0.025);
+  }
+
   100% {
     box-shadow: 0 0 0 $box-shadow-width rgba(255, 255, 255, 0.025),
       0 0 0 calc($box-shadow-width * 2 + 5px) rgba(255, 255, 255, 0.025),

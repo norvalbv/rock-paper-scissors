@@ -2,8 +2,9 @@ import "./game.scss";
 import rock from "../../images/icon-rock.svg";
 import paper from "../../images/icon-paper.svg";
 import scissors from "../../images/icon-scissors.svg";
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useRef } from "react";
 import mainBackground from "../../images/bg-triangle.svg";
+import { useEffect } from "react/cjs/react.development";
 
 export const Game = ({ handleWin, handleLose }) => {
   // const reducer = (state, action) => {
@@ -24,7 +25,7 @@ export const Game = ({ handleWin, handleLose }) => {
   // }
 
   const [choice, setChoice] = useState({ user: "", computer: "" });
-  const [result, setResult] = useState(true);
+  const [result, setResult] = useState(false);
   const [source, setSource] = useState({ user: null, computer: null });
 
   const handleClick = (userInput) => {
@@ -77,10 +78,6 @@ export const Game = ({ handleWin, handleLose }) => {
     }
   };
 
-  console.log(
-    `${choice.user}-wrap`.toLowerCase(), "grad-wrap"
-  )
-
   return (
     <div className="game">
       {result ? (
@@ -88,25 +85,36 @@ export const Game = ({ handleWin, handleLose }) => {
           <div>
             <p>Your Choice</p>
             <div
-              className={[`${choice.user}-wrap`.toLowerCase(), "grad-wrap"].join(" ")}
-              >
-              <button className="game-button win">
+              className={[
+                `${choice.user}-wrap`.toLowerCase(),
+                "grad-wrap",
+              ].join(" ")}
+            >
+              <button className={result === "Win" ? "game-button win" : "game-button"}>
                 <img src={source.user} alt="Paper Icon" />
               </button>
             </div>
           </div>
           <div className="result">
             <h3 id="result-title">You {result}</h3>
-            <button onClick={() => setResult("")} id="play-again">
+            <button
+              onClick={() => {
+                setResult("");
+              }}
+              id="play-again"
+            >
               Play again
             </button>
           </div>
-          <div>
+          <div className="computer-choice">
             <p>Computer Choice</p>
             <div
-              className={[`${choice.computer}-wrap`.toLowerCase(), "grad-wrap"].join(" ")}
-              >
-              <button className="game-button">
+              className={[
+                `${choice.computer}-wrap`.toLowerCase(),
+                "grad-wrap",
+              ].join(" ")}
+            >
+              <button className={result === "Lose" ? "game-button win" : "game-button"}>
                 <img src={source.computer} alt={""} />
               </button>
             </div>
@@ -125,7 +133,6 @@ export const Game = ({ handleWin, handleLose }) => {
               >
                 <img src={paper} alt="Paper Icon" />
               </button>
-              {/* <p>Paper</p> */}
             </div>
             <div className="grad-wrap rock-wrap" id="rock-placement">
               <button
@@ -135,7 +142,6 @@ export const Game = ({ handleWin, handleLose }) => {
               >
                 <img src={rock} alt="Rock Icon" />
               </button>
-              {/* <p>Rock</p> */}
             </div>
             <div className="grad-wrap scissors-wrap">
               <button
@@ -145,7 +151,6 @@ export const Game = ({ handleWin, handleLose }) => {
               >
                 <img src={scissors} alt="Scissors Icon" />
               </button>
-              {/* <p>Scissors</p> */}
             </div>
           </div>
         </>

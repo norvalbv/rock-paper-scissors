@@ -114,30 +114,97 @@ body, html {
   display: -ms-flexbox;
   display: flex;
   gap: 10rem;
+  margin-top: 6rem;
+}
+
+.computer-choice {
+  -webkit-animation-delay: 7s;
+          animation-delay: 7s;
+  -webkit-animation: computer 2s ease;
+          animation: computer 2s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  margin: 0;
 }
 
 .result {
+  -webkit-animation-delay: 8s;
+          animation-delay: 8s;
   -webkit-animation: show 2s ease;
           animation: show 2s ease;
-  -webkit-transition: 1s;
-  transition: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes computer {
+  0% {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+  }
+  100% {
+    height: auto;
+    width: auto;
+    overflow: visible;
+  }
+}
+
+@keyframes computer {
+  0% {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+  }
+  100% {
+    height: auto;
+    width: auto;
+    overflow: visible;
+  }
 }
 
 @-webkit-keyframes show {
   0% {
-    display: none;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+  }
+  50% {
+    -webkit-transform: scale(0.25, 0.25);
+            transform: scale(0.25, 0.25);
+  }
+  99% {
+    -webkit-transform: scale(1.1, 1.1);
+            transform: scale(1.1, 1.1);
   }
   100% {
-    display: inline-block;
+    height: auto;
+    width: auto;
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+    overflow: visible;
   }
 }
 
 @keyframes show {
   0% {
-    display: none;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+  }
+  50% {
+    -webkit-transform: scale(0.25, 0.25);
+            transform: scale(0.25, 0.25);
+  }
+  99% {
+    -webkit-transform: scale(1.1, 1.1);
+            transform: scale(1.1, 1.1);
   }
   100% {
-    display: inline-block;
+    height: auto;
+    width: auto;
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+    overflow: visible;
   }
 }
 
@@ -155,20 +222,26 @@ body, html {
 }
 
 .win {
-  -webkit-animation: buttonWin 0.5s;
-          animation: buttonWin 0.5s;
+  -webkit-animation: buttonWin 3s;
+          animation: buttonWin 3s;
+  -webkit-animation-delay: 0.25s;
+          animation-delay: 0.25s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
 
 @-webkit-keyframes buttonWin {
-  33% {
-    -webkit-box-shadow: 0 0 0 40px rgba(255, 255, 255, 0.025);
-            box-shadow: 0 0 0 40px rgba(255, 255, 255, 0.025);
+  25% {
+    -webkit-box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025);
+            box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025);
   }
-  66% {
-    -webkit-box-shadow: 0 0 0 40px rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 2 + 5px) rgba(255, 255, 255, 0.025);
-            box-shadow: 0 0 0 40px rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 2 + 5px) rgba(255, 255, 255, 0.025);
+  50% {
+    -webkit-box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 3 + 25px) rgba(255, 255, 255, 0.025);
+            box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 3 + 25px) rgba(255, 255, 255, 0.025);
+  }
+  75% {
+    -webkit-box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 3 + 25px) rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 4 + 50px) rgba(255, 255, 255, 0.025);
+            box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 3 + 25px) rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 4 + 50px) rgba(255, 255, 255, 0.025);
   }
   100% {
     -webkit-box-shadow: 0 0 0 40px rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 2 + 5px) rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 3 + 25px) rgba(255, 255, 255, 0.025);
@@ -177,13 +250,17 @@ body, html {
 }
 
 @keyframes buttonWin {
-  33% {
-    -webkit-box-shadow: 0 0 0 40px rgba(255, 255, 255, 0.025);
-            box-shadow: 0 0 0 40px rgba(255, 255, 255, 0.025);
+  25% {
+    -webkit-box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025);
+            box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025);
   }
-  66% {
-    -webkit-box-shadow: 0 0 0 40px rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 2 + 5px) rgba(255, 255, 255, 0.025);
-            box-shadow: 0 0 0 40px rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 2 + 5px) rgba(255, 255, 255, 0.025);
+  50% {
+    -webkit-box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 3 + 25px) rgba(255, 255, 255, 0.025);
+            box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 3 + 25px) rgba(255, 255, 255, 0.025);
+  }
+  75% {
+    -webkit-box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 3 + 25px) rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 4 + 50px) rgba(255, 255, 255, 0.025);
+            box-shadow: 0 0 0 calc($box-shadow-width * 2) rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 3 + 25px) rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 4 + 50px) rgba(255, 255, 255, 0.025);
   }
   100% {
     -webkit-box-shadow: 0 0 0 40px rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 2 + 5px) rgba(255, 255, 255, 0.025), 0 0 0 calc($box-shadow-width * 3 + 25px) rgba(255, 255, 255, 0.025);
