@@ -31,11 +31,6 @@ body, html {
   text-transform: uppercase;
 }
 
-.scoreboard .game-logo {
-  font-weight: 700;
-  line-height: 0.75;
-}
-
 .scoreboard .score-container {
   color: #3b4363;
   background: #fff;
@@ -52,5 +47,32 @@ body, html {
 
 .scoreboard .score-container .score-title {
   font-size: 1rem;
+}
+
+@media only screen and (max-width: 850px) {
+  .scoreboard {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .scoreboard {
+    width: 90%;
+  }
+  .game-logo {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .scoreboard .score-container {
+    padding: 0.5rem 1.25rem;
+  }
+  .scoreboard .score-container .score-title {
+    font-size: 0.75rem;
+  }
+  .game-logo {
+    width: 50%;
+  }
 }
 /*# sourceMappingURL=scoreboard.css.map */

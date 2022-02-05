@@ -35,7 +35,7 @@ function App() {
       <ScoreBoard score={score} gamemode={gamemode} />
       <Game handleWin={handleWin} handleLose={handleLose} gamemode={gamemode} />
       <Modal gamemode={gamemode} />
-      <GameMode choseMode={choseMode} />
+      <GameMode choseMode={choseMode} gamemode={gamemode} />
     </div>
   );
 }

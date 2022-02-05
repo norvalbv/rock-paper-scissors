@@ -7,6 +7,8 @@ import lizard from "../../images/icon-lizard.svg";
 import React, { useState, useReducer, useRef } from "react";
 import easyBackground from "../../images/bg-triangle.svg";
 import hardBackground from "../../images/bg-pentagon.svg";
+import { GameButtons } from "./gamebuttons";
+import { GameResults } from "./gameresults";
 
 export const Game = ({ handleWin, handleLose, gamemode }) => {
   // const reducer = (state, action) => {
@@ -29,21 +31,22 @@ export const Game = ({ handleWin, handleLose, gamemode }) => {
   const [choice, setChoice] = useState({ user: "", computer: "" });
   const [result, setResult] = useState(false);
   const [source, setSource] = useState({ user: null, computer: null });
+  let choiceArr =
+    gamemode === "easy"
+      ? ["Rock", "Paper", "Scissors"]
+      : ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
+
+  const imgSources = [rock, paper, scissors, lizard, spock];
 
   const handleClick = (userInput) => {
-    let choiceArr = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
-    const arr = [rock, paper, scissors, lizard, spock];
-
-    let computer =
-      gamemode === "easy"
-        ? Math.floor(Math.random() * 3)
-        : Math.floor(Math.random() * 5);
+    userInput = userInput.item;
+    let computer = Math.floor(Math.random() * choiceArr.length);
 
     setSource((prev) => {
       return {
         ...prev,
-        user: arr[choiceArr.indexOf(userInput)],
-        computer: arr[computer],
+        user: imgSources[choiceArr.indexOf(userInput)],
+        computer: imgSources[computer],
       };
     });
 
@@ -55,8 +58,6 @@ export const Game = ({ handleWin, handleLose, gamemode }) => {
       };
     });
 
-    console.log(choice, source);
-    // spock lizard
     if (choice.user === choice.computer) {
       console.log("DRAW");
       setResult("Draw");
@@ -104,60 +105,7 @@ export const Game = ({ handleWin, handleLose, gamemode }) => {
   return (
     <div className="game">
       {result ? (
-        <div className="result-section">
-          <div className="your-choice">
-            <p>Your Choice</p>
-            <div
-              className={[
-                `${choice.user}-wrap`.toLowerCase(),
-                "grad-wrap",
-              ].join(" ")}
-            >
-              <button
-                className={result === "Win" ? "game-button win" : "game-button"}
-              >
-                <img src={source.user} alt="Paper Icon" />
-              </button>
-            </div>
-            <p>{choice.user}</p>
-          </div>
-          <div className="result">
-            <h3 id="result-title">You {result}</h3>
-            <button
-              onClick={() => {
-                setResult("");
-              }}
-              id="play-again"
-              style={
-                result === "Lose"
-                  ? { color: "red" }
-                  : result === "Win"
-                  ? { color: "green" }
-                  : null
-              }
-            >
-              Play again
-            </button>
-          </div>
-          <div className="computer-choice">
-            <p>Computer Choice</p>
-            <div
-              className={[
-                `${choice.computer}-wrap`.toLowerCase(),
-                "grad-wrap",
-              ].join(" ")}
-            >
-              <button
-                className={
-                  result === "Lose" ? "game-button win" : "game-button"
-                }
-              >
-                <img src={source.computer} alt="Computer choice" />
-              </button>
-            </div>
-            <p>{choice.computer}</p>
-          </div>
-        </div>
+        <GameResults choice={choice} setResult={setResult} source={source} result={result}/>
       ) : (
         <>
           {gamemode === "easy" ? (
@@ -165,67 +113,11 @@ export const Game = ({ handleWin, handleLose, gamemode }) => {
           ) : (
             <img src={hardBackground} alt="" className="background" />
           )}
-          <div className="icons">
-            <div className="icon-3d-display paper-3d">
-              <span className="grad-wrap paper-wrap">
-                <button
-                  onClick={() => handleClick("Paper")}
-                  id="paper"
-                  className="game-button"
-                >
-                  <img src={paper} alt="Paper Icon" />
-                </button>
-              </span>
-            </div>
-            <div className="icon-3d-display rock-3d">
-              <span className="grad-wrap rock-wrap" id="rock-placement">
-                <button
-                  onClick={() => handleClick("Rock")}
-                  id="rock"
-                  className="game-button"
-                >
-                  <img src={rock} alt="Rock Icon" />
-                </button>
-              </span>
-            </div>
-            <div className="icon-3d-display scissors-3d">
-              <span className="grad-wrap scissors-wrap">
-                <button
-                  onClick={() => handleClick("Scissors")}
-                  id="scissors"
-                  className="game-button"
-                >
-                  <img src={scissors} alt="Scissors Icon" />
-                </button>
-              </span>
-            </div>
-            {gamemode === "hard" && (
-              <div className="icon-3d-display lizard-3d">
-                <span className="grad-wrap lizard-wrap">
-                  <button
-                    onClick={() => handleClick("Lizard")}
-                    id="lizard"
-                    className="game-button"
-                  >
-                    <img src={lizard} alt="Lizard Icon" />
-                  </button>
-                </span>
-              </div>
-            )}
-            {gamemode === "hard" && (
-              <div className="icon-3d-display spock-3d">
-                <span className="grad-wrap spock-wrap">
-                  <button
-                    onClick={() => handleClick("Spock")}
-                    id="spock"
-                    className="game-button"
-                  >
-                    <img src={spock} alt="Spock Icon" />
-                  </button>
-                </span>
-              </div>
-            )}
-          </div>
+          <GameButtons
+            choiceArr={choiceArr}
+            handleClick={handleClick}
+            imgSources={imgSources}
+          />
         </>
       )}
     </div>

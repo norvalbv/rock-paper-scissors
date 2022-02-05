@@ -12,12 +12,6 @@
   height: 10rem;
   text-transform: uppercase;
 
-
-  .game-logo {
-      font-weight: 700;
-      line-height: 0.75;
-  }
-
   .score-container {
     color: $n-dark-text;
     background: #fff;
@@ -27,12 +21,43 @@
     line-height: 1;
 
     .score {
-        font-size: 2.5rem;
-        font-weight: 700;
+      font-size: 2.5rem;
+      font-weight: 700;
     }
 
     .score-title {
-        font-size: 1rem;
+      font-size: 1rem;
     }
+  }
+}
+
+@media only screen and (max-width: $media-large) {
+  .scoreboard {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: $media-medium) {
+  .scoreboard {
+    width: 90%;
+  }
+
+  .game-logo {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: $media-small) {
+  .scoreboard {
+    .score-container {
+      padding: 0.5rem 1.25rem;
+      .score-title {
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  .game-logo {
+    width: 50%;
   }
 }
