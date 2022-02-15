@@ -1,4 +1,4 @@
-export const GameButtons = ({ choiceArr, handleClick, imgSources }) => {
+export const GameButtons = ({ choiceArr, handleClick, imgSources, test }) => {
   return (
     <div className="icons">
       {choiceArr.map((item) => (
@@ -10,7 +10,8 @@ export const GameButtons = ({ choiceArr, handleClick, imgSources }) => {
             className={[`${item}-wrap`.toLowerCase(), "grad-wrap"].join(" ")}
           >
             <button
-              onClick={() => handleClick({ item })}
+              // onClick={() => handleClick({ item })}
+              onClick={() => test(reducer, item)}
               id={item}
               className="game-button"
             >

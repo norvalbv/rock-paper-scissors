@@ -11,22 +11,22 @@ import { GameButtons } from "./gamebuttons";
 import { GameResults } from "./gameresults";
 
 export const Game = ({ handleWin, handleLose, gamemode }) => {
-  // const reducer = (state, action) => {
-  //   switch (action) {
-  //     case "Rock":
-  //       return { ...state, user: "Rock"};
-  //     case "Paper":
-  //       return;
-  //     case "Scissors":
-  //       return;
-  //     default:
-  //       return state;
-  //   }
-  // };
+  const reducer = (state, action) => {
+    switch (action) {
+      case "Rock":
+        return { ...state, user: "Rock"};
+      case "Paper":
+        return;
+      case "Scissors":
+        return;
+      default:
+        return state;
+    }
+  };
 
-  // const test = () => {
-  //   const [choice, dispatch] = useReducer(reducer, null);
-  // }
+  const test = () => {
+    const [choice, dispatch] = useReducer(reducer, null);
+  }
 
   const [choice, setChoice] = useState({ user: "", computer: "" });
   const [result, setResult] = useState(false);
@@ -105,7 +105,7 @@ export const Game = ({ handleWin, handleLose, gamemode }) => {
   return (
     <div className="game">
       {result ? (
-        <GameResults choice={choice} setResult={setResult} source={source} result={result}/>
+        <GameResults choice={choice} test={test} setResult={setResult} source={source} result={result}/>
       ) : (
         <>
           {gamemode === "easy" ? (
