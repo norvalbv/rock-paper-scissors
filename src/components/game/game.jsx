@@ -4,39 +4,24 @@ import paper from "../../images/icon-paper.svg";
 import scissors from "../../images/icon-scissors.svg";
 import spock from "../../images/icon-spock.svg";
 import lizard from "../../images/icon-lizard.svg";
-import React, { useState, useReducer, useRef } from "react";
+import { useState } from "react";
 import easyBackground from "../../images/bg-triangle.svg";
 import hardBackground from "../../images/bg-pentagon.svg";
 import { GameButtons } from "./gamebuttons";
 import { GameResults } from "./gameresults";
 
 export const Game = ({ handleWin, handleLose, gamemode }) => {
-  const reducer = (state, action) => {
-    switch (action) {
-      case "Rock":
-        return { ...state, user: "Rock"};
-      case "Paper":
-        return;
-      case "Scissors":
-        return;
-      default:
-        return state;
-    }
-  };
-
-  const test = () => {
-    const [choice, dispatch] = useReducer(reducer, null);
-  }
-
-  const [choice, setChoice] = useState({ user: "", computer: "" });
+  const [choiceState, setChoiceState] = useState({ user: "", computer: "" })
   const [result, setResult] = useState(false);
   const [source, setSource] = useState({ user: null, computer: null });
   let choiceArr =
     gamemode === "easy"
-      ? ["Rock", "Paper", "Scissors"]
-      : ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
+      ? ["Paper", "Rock", "Scissors"]
+      : ["Lizard", "Spock", "Scissors", "Paper", "Rock"];
 
-  const imgSources = [rock, paper, scissors, lizard, spock];
+  const imgSources = gamemode === "easy" ?
+  [paper, rock, scissors] :
+  [lizard, spock, scissors, paper, rock];
 
   const handleClick = (userInput) => {
     userInput = userInput.item;
@@ -44,15 +29,19 @@ export const Game = ({ handleWin, handleLose, gamemode }) => {
 
     setSource((prev) => {
       return {
-        ...prev,
         user: imgSources[choiceArr.indexOf(userInput)],
         computer: imgSources[computer],
       };
     });
 
-    setChoice((prev) => {
+    const choice = { user: "", computer: "" };
+    
+    choice.user = userInput;
+    choice.computer = choiceArr[computer];
+
+
+    setChoiceState((prev) => {
       return {
-        ...prev,
         user: userInput,
         computer: choiceArr[computer],
       };
@@ -105,7 +94,12 @@ export const Game = ({ handleWin, handleLose, gamemode }) => {
   return (
     <div className="game">
       {result ? (
-        <GameResults choice={choice} test={test} setResult={setResult} source={source} result={result}/>
+        <GameResults
+          choice={choiceState}
+          setResult={setResult}
+          source={source}
+          result={result}
+        />
       ) : (
         <>
           {gamemode === "easy" ? (
@@ -117,6 +111,7 @@ export const Game = ({ handleWin, handleLose, gamemode }) => {
             choiceArr={choiceArr}
             handleClick={handleClick}
             imgSources={imgSources}
+            gamemode={gamemode}
           />
         </>
       )}

@@ -1,17 +1,25 @@
-export const GameButtons = ({ choiceArr, handleClick, imgSources, test }) => {
+export const GameButtons = ({
+  choiceArr,
+  handleClick,
+  imgSources,
+  gamemode,
+}) => {
   return (
     <div className="icons">
       {choiceArr.map((item) => (
         <div
           key={choiceArr.indexOf(item)}
-          className={["icon-3d-display", `${item}-3d`.toLowerCase()].join(" ")}
+          className={
+            gamemode === "hard"
+              ? ["icon-3d-display", `${item}-3d`.toLowerCase(), `${item}-pos-hard`.toLowerCase()].join(" ")
+              : ["icon-3d-display", `${item}-3d`.toLowerCase(), `${item}-pos-easy`.toLowerCase()].join(" ")
+          }
         >
           <span
             className={[`${item}-wrap`.toLowerCase(), "grad-wrap"].join(" ")}
           >
             <button
               onClick={() => handleClick({ item })}
-              // onClick={() => test(reducer, item)}
               id={item}
               className="game-button"
             >

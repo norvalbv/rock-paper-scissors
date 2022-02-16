@@ -1,4 +1,6 @@
 export const GameResults = ({ result, choice, source, setResult }) => {
+
+  console.log([result, choice, source])
   return (
     <div className="result-section">
       <div className="your-choice">

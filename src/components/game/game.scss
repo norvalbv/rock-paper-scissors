@@ -16,6 +16,7 @@
   transition: 0.5s ease;
   box-shadow: inset 1px 5px 7.5px #333;
   border: none;
+  position: absolute;
 
   &:hover {
     box-shadow: inset 0 0 7.5px #000;
@@ -68,8 +69,6 @@
 
 .rock-3d {
   background: rgb(141, 31, 31);
-  position: absolute;
-  bottom: 0;
 }
 
 .scissors-3d {
@@ -84,6 +83,27 @@
   background: rgb(55, 150, 182);
 }
 
+.rock-pos-easy {
+  transform: translateY(250px);
+  position: absolute;
+}
+
+.paper-pos-hard {
+  transform: translate(-125px, 100px);
+}
+
+.rock-pos-hard {
+  transform: translate(-450px, 275px);
+}
+
+.lizard-pos-hard {
+  transform: translate(450px, 275px);
+}
+
+.spock-pos-hard {
+  transform: translate(125px, 100px);
+}
+
 .background {
   position: absolute;
   margin: 3.5rem auto;
@@ -91,15 +111,11 @@
 
 .icons {
   position: relative;
+  display: flex;
   justify-content: center;
-  gap: 8rem;
+  gap: 7rem;
   height: 100%;
   width: 100%;
-  display: flex;
-  #rock-placement {
-    position: absolute;
-    bottom: 0;
-  }
 }
 
 .result-section {
@@ -228,7 +244,6 @@ $box-shadow-width: 40px;
 }
 
 @media only screen and (max-width: $media-medium) {
-
   .result-section {
     gap: 4rem;
   }
@@ -265,6 +280,22 @@ $box-shadow-width: 40px;
 
   #play-again {
     padding: 0.5rem 2rem;
+  }
+
+  .paper-pos-hard {
+    transform: translate(-110px, 110px);
+  }
+  
+  .spock-pos-hard {
+    transform: translate(110px, 110px);
+  }  
+
+  .rock-pos-hard {
+    transform: translate(-400px, 275px);
+  }
+
+  .lizard-pos-hard {
+    transform: translate(400px, 275px);
   }
 }
 

@@ -37,6 +37,7 @@ body, html {
   -webkit-box-shadow: inset 1px 5px 7.5px #333;
           box-shadow: inset 1px 5px 7.5px #333;
   border: none;
+  position: absolute;
 }
 
 .game-button:hover {
@@ -105,8 +106,6 @@ body, html {
 
 .rock-3d {
   background: #8d1f1f;
-  position: absolute;
-  bottom: 0;
 }
 
 .scissors-3d {
@@ -121,6 +120,32 @@ body, html {
   background: #3796b6;
 }
 
+.rock-pos-easy {
+  -webkit-transform: translateY(250px);
+          transform: translateY(250px);
+  position: absolute;
+}
+
+.paper-pos-hard {
+  -webkit-transform: translate(-125px, 100px);
+          transform: translate(-125px, 100px);
+}
+
+.rock-pos-hard {
+  -webkit-transform: translate(-450px, 275px);
+          transform: translate(-450px, 275px);
+}
+
+.lizard-pos-hard {
+  -webkit-transform: translate(450px, 275px);
+          transform: translate(450px, 275px);
+}
+
+.spock-pos-hard {
+  -webkit-transform: translate(125px, 100px);
+          transform: translate(125px, 100px);
+}
+
 .background {
   position: absolute;
   margin: 3.5rem auto;
@@ -128,20 +153,15 @@ body, html {
 
 .icons {
   position: relative;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 8rem;
-  height: 100%;
-  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-.icons #rock-placement {
-  position: absolute;
-  bottom: 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 7rem;
+  height: 100%;
+  width: 100%;
 }
 
 .result-section {
@@ -388,6 +408,22 @@ body, html {
   }
   #play-again {
     padding: 0.5rem 2rem;
+  }
+  .paper-pos-hard {
+    -webkit-transform: translate(-110px, 110px);
+            transform: translate(-110px, 110px);
+  }
+  .spock-pos-hard {
+    -webkit-transform: translate(110px, 110px);
+            transform: translate(110px, 110px);
+  }
+  .rock-pos-hard {
+    -webkit-transform: translate(-400px, 275px);
+            transform: translate(-400px, 275px);
+  }
+  .lizard-pos-hard {
+    -webkit-transform: translate(400px, 275px);
+            transform: translate(400px, 275px);
   }
 }
 
