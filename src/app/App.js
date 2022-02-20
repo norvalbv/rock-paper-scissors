@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./app.scss";
-import { Game } from "./components/game/game";
-import { Modal } from "./components/modal/modal";
-import { ScoreBoard } from "./components/scoreboard/scoreboard";
-import { GameMode} from "./components/gamemode/gamemode";
+import { Game } from "../components/game/game";
+import { Modal } from "../components/modal/modal";
+import { ScoreBoard } from "../components/scoreboard/scoreboard";
+import { GameMode} from "../components/gamemode/gamemode";
 
 function App() {
   const [score, setScore] = useState(0);

@@ -11,8 +11,16 @@ export const GameButtons = ({
           key={choiceArr.indexOf(item)}
           className={
             gamemode === "hard"
-              ? ["icon-3d-display", `${item}-3d`.toLowerCase(), `${item}-pos-hard`.toLowerCase()].join(" ")
-              : ["icon-3d-display", `${item}-3d`.toLowerCase(), `${item}-pos-easy`.toLowerCase()].join(" ")
+              ? [
+                  "icon-3d-display",
+                  `${item}-3d`.toLowerCase(),
+                  `${item}-pos-hard`.toLowerCase(),
+                ].join(" ")
+              : [
+                  "icon-3d-display",
+                  `${item}-3d`.toLowerCase(),
+                  `${item}-pos-easy`.toLowerCase(),
+                ].join(" ")
           }
         >
           <span

@@ -1,6 +1,10 @@
-export const GameResults = ({ result, choice, source, setResult }) => {
+import { useDispatch, useSelector } from "react-redux";
 
-  console.log([result, choice, source])
+export const GameResults = ({ choice, source }) => {
+  const result = useSelector((state) => state.game);
+
+  const dispatch = useDispatch();
+
   return (
     <div className="result-section">
       <div className="your-choice">
@@ -15,7 +19,7 @@ export const GameResults = ({ result, choice, source, setResult }) => {
             className={[
               `${choice.user}-wrap`.toLowerCase(),
               "grad-wrap",
-              result === "Win" && "win",
+              result.result === "win" && "win",
             ].join(" ")}
           >
             <button className="game-button">
@@ -26,10 +30,10 @@ export const GameResults = ({ result, choice, source, setResult }) => {
         <p>{choice.user}</p>
       </div>
       <div className="result">
-        <h3 id="result-title">You {result}</h3>
+        <h3 id="result-title">You {result.result} </h3>
         <button
           onClick={() => {
-            setResult("");
+            dispatch({ type: "reset" });
           }}
           id="play-again"
           style={
@@ -55,7 +59,7 @@ export const GameResults = ({ result, choice, source, setResult }) => {
             className={[
               `${choice.computer}-wrap`.toLowerCase(),
               "grad-wrap",
-              result === "Lose" && "win",
+              result.result === "lose" && "win",
             ].join(" ")}
           >
             <button className="game-button">
